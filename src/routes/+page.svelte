@@ -2,4 +2,6 @@
   import ScrollyTeller from '../components/ScrollyTeller.svelte'
 </script>
 
-<App />
+<main>
+  <ScrollyTeller />
+</main>
