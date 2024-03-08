@@ -104,6 +104,14 @@
   $: UA_S = new_cities.features.filter(filter_S);
   $: UA_V = new_cities.features.filter(filter_V);
   $: UA_P = new_cities.features.filter(filter_P);
+
+  // $: svg = d3.hexbin()
+  //     .extent()
+  //     extent([[0, 0], [width, height]])
+  //     .radius(10)
+  //     .x(tweenedX_UA)
+  //     .y(tweenedY_UA);
+
 </script>
 
 <svg class="graph">
