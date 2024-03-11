@@ -87,7 +87,7 @@
   .map {
     width: 100%;
     height: 100vh; /* check problem when setting width */
-    position: absolute;
+    position: relative;
     opacity: 0;
     visibility: hidden;
     transition: opacity 2s, visibility 2s;

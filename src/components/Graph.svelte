@@ -5,8 +5,12 @@
   import { new_cities } from "../data/new_cities"
   import { loop_guard } from "svelte/internal";
   import * as d3 from 'd3';
+  import Map from "./Map.svelte";
+  import { onMount } from 'svelte';
+  import * as d3Hexbin from "d3-hexbin";
 
-  export let width, height, projection;
+
+  export let index, width, height, geoJsonToFit, projection;
 
   // let arcGenerator = d3.arc()
   //   .innerRadius(10)
@@ -31,11 +35,10 @@
   // $: {
   //   arc_data = pieAngleGenerator(filteredData.map(data => data.length));
   // }
-  
+  let svg;
   const tweenOptions = {
     delay: 0,
-    duration: 100,
-    easing: sineIn,
+    duration: 10,
   };
 
   const tweenedX_UA = tweened(
@@ -105,18 +108,38 @@
   $: UA_V = new_cities.features.filter(filter_V);
   $: UA_P = new_cities.features.filter(filter_P);
 
-  // $: svg = d3.hexbin()
-  //     .extent()
-  //     extent([[0, 0], [width, height]])
-  //     .radius(10)
-  //     .x(tweenedX_UA)
-  //     .y(tweenedY_UA);
+  // $: svg = d3.create("svg")
+  //   .attr("viewBox", [0, 0, width, height])
+  //   .attr("width", width)
+  //   .attr("height", height)
+  //   .attr("style", "max-width: 100%; height: auto;");
+ 
 
+  // $: hexbin = d3Hexbin.hexbin()
+  //     .extent([[0, 0], [width, height]])
+  //     .radius(10);
+
+  // $: bins = hexbin(new_cities.features.map(d => projection(d.geometry.coordinates)));
+  // // $: color = d3.scaleSequential(d3.extent(bins, d => d.date), d3.interpolateSpectral);
+  // $: radius = d3.scaleSqrt([0, d3.max(bins, d => d.length)], [0, hexbin.radius() * Math.SQRT2]);
+  // $: {
+  //   if (svg) {
+  //     svg.append("g")
+  //       .attr("transform", "translate(580,20)")
+  //       .append(() => legend({
+  //         color, 
+  //         title: "Median opening year", 
+  //         width: 260, 
+  //         tickValues: d3.utcYear.every(5).range(...color.domain()),
+  //         tickFormat: d3.utcFormat("%Y")
+  //       }));
+  //   }
+  // }
 </script>
 
 <svg class="graph">
   <g class = "legend" stroke = "#000">
-    <text x = "-270" y = "70" style = "font-size: 22" font-weight = bold> Explosions/Remote violence</text>
+    <text x = "1070px" y = "105px" style = "font-size: 22" font-weight = bold> Explosions/Remote violence</text>
     <circle
     key = 1
     cx = 1050px
@@ -130,7 +153,7 @@
       UA_P = null;
     }}
     />
-    <text x = "-220" y = "107" style = "font-size: 22"> Battles</text>
+    <text x = "1070px" y = "145px" style = "font-size: 22"> Battles</text>
     <circle
     key = 1
     cx = 1050px
@@ -144,7 +167,7 @@
       UA_P = null;
     }}
     />
-    <text x = "-220" y = "147" style = "font-size: 22"> Strategic developments</text>
+    <text x = "1070px" y = "185px" style = "font-size: 22"> Strategic developments</text>
     <circle
     key = 1
     cx = 1050px 
@@ -158,7 +181,7 @@
       UA_P = null;
     }}
     />
-    <text x = "-220" y = "187" style = "font-size: 22"> Violence against civilians</text>
+    <text x = "1070px" y = "225px" style = "font-size: 22"> Violence against civilians</text>
     <circle
     key = 1
     cx = 1050px
@@ -172,7 +195,7 @@
       UA_P = null;
     }}
     />
-    <text x = "-220" y = "227" style = "font-size: 22"> Protests</text>
+    <text x = "1070px" y = "265px" style = "font-size: 22"> Protests</text>
     <circle
     key = 1
     cx = 1050px
@@ -200,8 +223,8 @@
       UA_P = new_cities.features.filter(filter_P);
     }} 
     > Reset Filter</text>
-    <text x = "-320" y = "387">Click on the circles to filter for a specific bin</text>
 </g>
+
 {#each tweenedData_UA as new_cities, i}
     {#if new_cities.x && new_cities.y}
         <!-- Determine fill color based on event type -->
@@ -234,18 +257,18 @@
   {/each}
 </svg>
 
+
 <style>
   .graph {
     width: 100%;
-    height: 100vh; /* check problem when setting width */
-    position: absolute;
-    outline: red solid 7px;
+    height: 80vh;
+    position: relative;
+    outline: rgb(0, 94, 255) solid 7px;
   }
 
   .visualization {
     font: 25px sans-serif;
     margin: auto;
-    margin-top: 1px;
     text-align: middle;
   }
 
