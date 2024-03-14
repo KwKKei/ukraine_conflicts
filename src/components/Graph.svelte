@@ -138,93 +138,92 @@
 </script>
 
 <svg class="graph">
-  <g class = "legend" stroke = "#000">
-    <text x = "1070px" y = "105px" style = "font-size: 22" font-weight = bold> Explosions/Remote violence</text>
+  <g class="legend" stroke="#000">
+    <text x="1000px" y="105px" style="font-size: 22" font-weight="bold">Explosions/Remote violence</text>
     <circle
-    key = 1
-    cx = 1050px
-    cy = 100px
-    fill = "blue"
-    r = "15"
-    on:click = {() => {
-      UA_B = null;
-      UA_S = null;
-      UA_V = null;
-      UA_P = null;
-    }}
+      key="1"
+      cx="980px"
+      cy="100px"
+      fill="blue"
+      r="15"
+      on:click={() => {
+        UA_B = null;
+        UA_S = null;
+        UA_V = null;
+        UA_P = null;
+      }}
     />
-    <text x = "1070px" y = "145px" style = "font-size: 22"> Battles</text>
+    <text x="1000px" y="145px" style="font-size: 22">Battles</text>
     <circle
-    key = 1
-    cx = 1050px
-    cy = 140px
-    fill = "red"
-    r = "15"
-    on:click = {() => {
-      UA_E = null;
-      UA_S = null;
-      UA_V = null;
-      UA_P = null;
-    }}
+      key="1"
+      cx="980px"
+      cy="140px"
+      fill="red"
+      r="15"
+      on:click={() => {
+        UA_E = null;
+        UA_S = null;
+        UA_V = null;
+        UA_P = null;
+      }}
     />
-    <text x = "1070px" y = "185px" style = "font-size: 22"> Strategic developments</text>
+    <text x="1000px" y="185px" style="font-size: 22">Strategic developments</text>
     <circle
-    key = 1
-    cx = 1050px 
-    cy = 180px
-    fill = "green"
-    r = "15"
-    on:click = {() => {
-      UA_E = null;
-      UA_B = null;
-      UA_V = null;
-      UA_P = null;
-    }}
+      key="1"
+      cx="980px"
+      cy="180px"
+      fill="green"
+      r="15"
+      on:click={() => {
+        UA_E = null;
+        UA_B = null;
+        UA_V = null;
+        UA_P = null;
+      }}
     />
-    <text x = "1070px" y = "225px" style = "font-size: 22"> Violence against civilians</text>
+    <text x="1000px" y="225px" style="font-size: 22">Violence against civilians</text>
     <circle
-    key = 1
-    cx = 1050px
-    cy = 220px
-    fill = "purple"
-    r = "15"
-    on:click = {() => {
-      UA_E = null;
-      UA_B = null;
-      UA_S = null;
-      UA_P = null;
-    }}
+      key="1"
+      cx="980px"
+      cy="220px"
+      fill="purple"
+      r="15"
+      on:click={() => {
+        UA_E = null;
+        UA_B = null;
+        UA_S = null;
+        UA_P = null;
+      }}
     />
-    <text x = "1070px" y = "265px" style = "font-size: 22"> Protests</text>
+    <text x="1000px" y="265px" style="font-size: 22">Protests</text>
     <circle
-    key = 1
-    cx = 1050px
-    cy = 260px
-    fill = "orange"
-    r = "15"
-    on:click = {() => {
-      UA_E = null;
-      UA_B = null;
-      UA_S = null;
-      UA_V = null;
-    }}
+      key="1"
+      cx="980px"
+      cy="260px"
+      fill="orange"
+      r="15"
+      on:click={() => {
+        UA_E = null;
+        UA_B = null;
+        UA_S = null;
+        UA_V = null;
+      }}
     />
-    <text 
-    key = 1
-    x = "1050" 
-    y = "347" 
-    fill = 'black'
-    style = "font-size: 22"
-    on:click = {() => {
-      UA_E = new_cities.features.filter(filter_E);
-      UA_B = new_cities.features.filter(filter_B);
-      UA_S = new_cities.features.filter(filter_S);
-      UA_V = new_cities.features.filter(filter_V);
-      UA_P = new_cities.features.filter(filter_P);
-    }} 
-    > Reset Filter</text>
-</g>
-
+    <text
+      key="1"
+      x="1000px"
+      y="300px"
+      fill="black"
+      style="font-size: 22"
+      on:click={() => {
+        UA_E = new_cities.features.filter(filter_E);
+        UA_B = new_cities.features.filter(filter_B);
+        UA_S = new_cities.features.filter(filter_S);
+        UA_V = new_cities.features.filter(filter_V);
+        UA_P = new_cities.features.filter(filter_P);
+      }}
+    >Reset Filter</text>
+  </g>
 {#each tweenedData_UA as new_cities, i}
     {#if new_cities.x && new_cities.y}
         <!-- Determine fill color based on event type -->
@@ -263,7 +262,6 @@
     width: 100%;
     height: 80vh;
     position: relative;
-    outline: rgb(0, 94, 255) solid 7px;
   }
 
   .visualization {

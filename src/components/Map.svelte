@@ -28,7 +28,7 @@
     map = new mapboxgl.Map({
       container,
       style: "mapbox://styles/wys6299/clt7qstej00hs01o801l17nat",
-      center: [32, 49],
+      center: [31, 49],
       zoom: zoomLevel,
       attributionControl: true, // removes attribution from the bottom of the map
     });
@@ -91,7 +91,7 @@
     opacity: 0;
     visibility: hidden;
     transition: opacity 2s, visibility 2s;
-    outline: blue solid 3px;
+    outline: rgb(0, 0, 0) solid 3px;
   }
 
   .map.visible {
